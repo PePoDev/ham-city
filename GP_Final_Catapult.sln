@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GP_Final_Catapult", "GP_Final_Catapult.csproj", "{53BCCFE5-E28F-4714-8636-67EA81E1EE3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53BCCFE5-E28F-4714-8636-67EA81E1EE3A}.Debug|x86.ActiveCfg = Debug|x86
+		{53BCCFE5-E28F-4714-8636-67EA81E1EE3A}.Debug|x86.Build.0 = Debug|x86
+		{53BCCFE5-E28F-4714-8636-67EA81E1EE3A}.Release|x86.ActiveCfg = Release|x86
+		{53BCCFE5-E28F-4714-8636-67EA81E1EE3A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79870029-87A6-4AA4-B1A1-7849225BCAA3}
+	EndGlobalSection
+EndGlobal
