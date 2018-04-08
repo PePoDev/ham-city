@@ -22,5 +22,89 @@ namespace GP_Final_Catapult.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("720")]
+        public int ScreenHeight {
+            get {
+                return ((int)(this["ScreenHeight"]));
+            }
+            set {
+                this["ScreenHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1280")]
+        public int ScreenWidth {
+            get {
+                return ((int)(this["ScreenWidth"]));
+            }
+            set {
+                this["ScreenWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FullScreen {
+            get {
+                return ((bool)(this["FullScreen"]));
+            }
+            set {
+                this["FullScreen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public byte SFXVolume {
+            get {
+                return ((byte)(this["SFXVolume"]));
+            }
+            set {
+                this["SFXVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public byte BGMVolume {
+            get {
+                return ((byte)(this["BGMVolume"]));
+            }
+            set {
+                this["BGMVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VSync {
+            get {
+                return ((bool)(this["VSync"]));
+            }
+            set {
+                this["VSync"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowFPS {
+            get {
+                return ((bool)(this["ShowFPS"]));
+            }
+            set {
+                this["ShowFPS"] = value;
+            }
+        }
     }
 }

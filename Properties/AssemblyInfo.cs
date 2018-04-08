@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GP_Final_Catapult")]
-[assembly: AssemblyProduct("GP_Final_Catapult")]
+[assembly: AssemblyTitle("Human And Monster City")]
+[assembly: AssemblyProduct("HAM City")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("LonhHugs")]

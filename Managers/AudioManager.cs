@@ -1,7 +1,7 @@
 ﻿
 
-namespace GP_Final_Catapult.AudioManager {
-    class Audio {
+namespace GP_Final_Catapult.Managers {
+    class AudioManager {
 
     }
 }

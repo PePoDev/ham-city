@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GP_Final_Catapult {
-    class Playground {
+namespace GP_Final_Catapult.UI {
+    class Label {
     }
 }

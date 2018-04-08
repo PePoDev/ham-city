@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GP_Final_Catapult.Levels {
-    class Level_01 {
+namespace GP_Final_Catapult.Managers {
+    class InputManager {
     }
 }
