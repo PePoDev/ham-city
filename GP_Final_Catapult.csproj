@@ -63,6 +63,7 @@
     <Compile Include="GameObjects\Bullet.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="GameObjects\Wall.cs" />
+    <Compile Include="Utilities\FadeItem.cs" />
     <Compile Include="Utilities\ScreenTransitions.cs" />
     <Compile Include="GameObjects\Catapult.cs" />
     <Compile Include="Main.cs" />
