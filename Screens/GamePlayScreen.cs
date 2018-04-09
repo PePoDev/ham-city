@@ -4,10 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using GP_Final_Catapult.GameObjects;
 namespace GP_Final_Catapult.Screens {
     class GamePlayScreen : IScreen{
+        Catapult Catapult;
+        Enemy Enemy;
+        Bullet Bullet;
+        public override void Initial() {
 
+        }
+        public override void LoadContent() {
+            base.LoadContent();
+
+        }
+
+        
         void LoadLevel(string fileName) {
             FileStream fs = new FileStream(fileName, FileMode.CreateNew);
             BinaryWriter w = new BinaryWriter(fs);

@@ -7,8 +7,12 @@ namespace GP_Final_Catapult.Screens {
     abstract class IScreen {
         protected ContentManager Content;
 
+        public virtual void Initial() {
+
+        }
         public virtual void LoadContent() {
             Content = new ContentManager(ScreenManager.Content.ServiceProvider, "Content");
+            Initial();
         }
         public virtual void UnloadContent() {
             Content.Unload();

@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace GP_Final_Catapult.Components {
     class Transform {
-        protected Vector2 transform, rotation, scale;
-        Transform(Vector2 transform, Vector2 rotation,Vector2 scale) {
-            this.transform = transform; this.rotation = rotation; this.scale = scale;
-        }
+        public Vector2 Position, Scale;
+        public float Rotation;
 
+        public Transform() {
+            Position = Vector2.Zero;
+            Scale = Vector2.One;
+            Rotation = 0f;
+        }
 
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GP_Final_Catapult.GameObjects {
-    class Enemy {
+    class Enemy : IGameObject {
+
     }
 }

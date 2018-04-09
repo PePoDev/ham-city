@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GP_Final_Catapult.GameObjects {
-    class Bullet:IGameObject {
+    class Bullet : IGameObject {
 
     }
 }
