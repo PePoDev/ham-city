@@ -7,7 +7,7 @@ namespace GP_Final_Catapult.Utilities{
     static class ScreenTransitions {
         private static Texture2D Circle;
         private static float scale;
-        static List<FadeItem> items = new List<FadeItem>(); 
+        private static List<FadeItem> items = new List<FadeItem>(); 
         public static void SetTexture(Texture2D _texture) {
             Circle = _texture;
         }

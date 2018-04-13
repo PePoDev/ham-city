@@ -37,3 +37,24 @@
 /processorParam:Quality=Best
 /build:Audios/2000_Field2.mp3
 
+#begin Fonts/Baffled.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Baffled.spritefont
+
+#begin Fonts/Jacklane.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Jacklane.spritefont
+
+#begin Fonts/Kaiju.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Kaiju.spritefont
+

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GP_Final_Catapult.Components {
-    class Transform {
+    class Transform : IComponent{
         public Vector2 Position, Scale;
         public float Rotation;
 

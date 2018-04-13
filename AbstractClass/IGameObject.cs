@@ -5,15 +5,14 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GP_Final_Catapult.GameObjects {
     abstract class IGameObject {
         protected Transform Transform;
-        protected string name;
-
+        protected string Name;
+        protected string Tag;
+        protected bool Active;
+        protected byte Layer;
 
         public virtual void Update(GameTime gameTime) {
         }
         public virtual void Draw(SpriteBatch spriteBatch) {
-        }
-        public virtual void Reset() {
-
         }
     }
 }

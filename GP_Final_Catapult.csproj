@@ -57,6 +57,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AbstractClass\IComponent.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="AbstractClass\IGameObject.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="GameObjects\Wall.cs" />
     <Compile Include="Utilities\FadeItem.cs" />
+    <Compile Include="Utilities\FramerateCounter.cs" />
     <Compile Include="Utilities\ScreenTransitions.cs" />
     <Compile Include="GameObjects\Catapult.cs" />
     <Compile Include="Main.cs" />
@@ -140,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="Levels\Level01.xml" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

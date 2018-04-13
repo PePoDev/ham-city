@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GP_Final_Catapult.Screens;
 using Microsoft.Xna.Framework.Content;
+using GP_Final_Catapult.Screens;
 
 namespace GP_Final_Catapult.Managers {
     static class ScreenManager {
@@ -11,6 +11,7 @@ namespace GP_Final_Catapult.Managers {
 
         public static void LoadContent(Main _main) {
             main = _main;
+
             Content = new ContentManager(main.Content.ServiceProvider, "Content");
             currentScreen.LoadContent();
         }
