@@ -8,6 +8,7 @@ namespace GP_Final_Catapult.Managers {
         private static KeyboardState keyboardPreviousState;
         private static KeyboardState keyboardCurrentState;
 
+        private static Vector2 mousePosition;
         public static void Update(GameTime gameTime) {
             mousePreviousState = mouseCurrentState;
             mouseCurrentState = Mouse.GetState();
@@ -15,11 +16,12 @@ namespace GP_Final_Catapult.Managers {
             keyboardCurrentState = Keyboard.GetState();
         }
         public static Vector2 GetMousePosition() {
-            return new Vector2(mouseCurrentState.X, mouseCurrentState.Y);
+            mousePosition.X = mouseCurrentState.X;
+            mousePosition.Y = mouseCurrentState.Y;
+            return mousePosition;
         }
         public static bool OnKeyDown(Keys key) {
-
-            return Keyboard.GetState().IsKeyDown(key);
+            return (keyboardCurrentState.IsKeyDown(key) != keyboardPreviousState.IsKeyDown(key) )&& !keyboardCurrentState.IsKeyUp(key);
         }
     }
 }

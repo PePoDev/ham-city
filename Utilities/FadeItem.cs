@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GP_Final_Catapult.Utilities {
     class FadeItem {
@@ -17,10 +13,8 @@ namespace GP_Final_Catapult.Utilities {
                 return (float)Math.Cos(Radians) + 1;
             }
         }
-
         public float Delay { get; set; }
         public float Radians { get; set; }
-
         public void Update(float deltaTimeInMilliseconds) {
             Delay -= deltaTimeInMilliseconds;
             if(Delay < 0) {
