@@ -43,9 +43,28 @@ namespace GP_Final_Catapult {
             var pythonInterpreter = new PythonInterpreter();
             var manualInterpreter = new ManualInterpreter();
             console.Interpreter = manualInterpreter;
-
-            pythonInterpreter.AddVariable("name", graphics);
-            manualInterpreter.RegisterCommand("Unlock", args => {  });
+            // Add variable for PythonInterpreter
+            pythonInterpreter.AddVariable("console", console);
+            pythonInterpreter.AddVariable("manual", manualInterpreter);
+            // Add command for ManualInterpreter
+            manualInterpreter.RegisterCommand("fullscreen", args => {
+                if (graphics.IsFullScreen && args[0].Equals("off"))
+                    graphics.ToggleFullScreen();
+                else if (!graphics.IsFullScreen && args[0].Equals("on"))
+                    graphics.ToggleFullScreen();
+            });
+            manualInterpreter.RegisterCommand("fps", args => {
+                if (args[0].Equals("on")) {
+                    Settings.Default.ShowFPS = true;
+                    Settings.Default.Save();
+                } else if (args[0].Equals("off")) {
+                    Settings.Default.ShowFPS = false;
+                    Settings.Default.Save();
+                }
+            });
+            manualInterpreter.RegisterCommand("console.Interpreter", args => { if (args[0].Equals("=") & args[1].Equals("python")) console.Interpreter = pythonInterpreter; });
+            manualInterpreter.RegisterCommand("hide", args => { console.ToggleOpenClose(); });
+            manualInterpreter.RegisterCommand("exit", args => { Exit(); });
         }
         protected override void Initialize() {
             base.Initialize();
