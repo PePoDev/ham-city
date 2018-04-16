@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GP_Final_Catapult.Components {
     class Transform : IComponent{
@@ -15,6 +11,12 @@ namespace GP_Final_Catapult.Components {
             Scale = Vector2.One;
             Rotation = 0f;
         }
-
+		public Transform(int x, int y) {
+			Position = new Vector2(x,y);
+			Scale = Vector2.One;
+			Rotation = 0f;
+		}
+		public void Update(GameTime gameTime) { }
+        public void Draw(SpriteBatch spriteBatch) { }
     }
 }
