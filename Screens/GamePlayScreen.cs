@@ -13,7 +13,7 @@ namespace GP_Final_Catapult.Screens {
             base.LoadContent();
 			enemyTexture = Content.Load<Texture2D>("TransitionEffect/Circle");
 			
-			var enemySprite = new Sprite(enemyTexture, 64, 64, new Vector2(1,2));
+			var enemySprite = new Sprite(enemyTexture, 64, 64);
 			enemySprite.CreateAnimmtion("idle",(0,0));
 			enemySprite.PlayAnimation("idle");
 			Enemy.AddComponent(enemySprite);

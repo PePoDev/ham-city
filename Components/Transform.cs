@@ -11,8 +11,8 @@ namespace GP_Final_Catapult.Components {
             Scale = Vector2.One;
             Rotation = 0f;
         }
-		public Transform(int x, int y) {
-			Position = new Vector2(x,y);
+		public Transform(Vector2 position) {
+			Position = position;
 			Scale = Vector2.One;
 			Rotation = 0f;
 		}
