@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 
 namespace GP_Final_Catapult.GameObjects {
-	class GameObject {
+	abstract class IGameObject {
         protected Dictionary<string,IComponent> Components = new Dictionary<string, IComponent>();
+		public Transform Transform;
         public string Name;
         public string Tag;
         public bool Active;

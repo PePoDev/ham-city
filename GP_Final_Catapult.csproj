@@ -61,7 +61,8 @@
     <Compile Include="AbstractClass\IUserinterface.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Transform.cs" />
-    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="AbstractClass\IGameObject.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="Utilities\FadeItem.cs" />
     <Compile Include="Utilities\FramerateCounter.cs" />
     <Compile Include="Utilities\ScreenTransitions.cs" />
