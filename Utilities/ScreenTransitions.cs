@@ -13,8 +13,8 @@ namespace GP_Final_Catapult.Utilities{
             Circle = _texture;
         }
         public static void Initialize() {
-            int width = Settings.Default.ScreenWidth;
-            int height = Settings.Default.ScreenHeight;
+            var width = Settings.Default.ScreenWidth;
+            var height = Settings.Default.ScreenHeight;
             for(int xPixel = 32; xPixel - 32 < width; xPixel += 64) {
                 for(int yPixel = 32; yPixel - 32 < height; yPixel += 64) {
                     items.Add(new FadeItem() {

@@ -7,11 +7,11 @@ using System.Collections.Generic;
 namespace GP_Final_Catapult.GameObjects {
 	abstract class IGameObject {
         protected Dictionary<string,IComponent> Components = new Dictionary<string, IComponent>();
-		public Transform Transform = new Transform();
-        public string Name;
-        public string Tag;
-        public bool Active;
-        public byte Layer;
+		public Transform transform = new Transform();
+        public string name;
+        public string tag;
+        public bool active;
+        public byte layer;
 
         public void AddComponent(IComponent component) {
             Components.Add(component.GetType().Name, component);
@@ -33,7 +33,7 @@ namespace GP_Final_Catapult.GameObjects {
 			foreach (var component in Components) {
 				switch (component.Value.GetType().Name) {
 					case "Sprite":
-						(component.Value as Sprite).Draw(spriteBatch, Transform.Position);
+						(component.Value as Sprite).Draw(spriteBatch, transform.position);
 						break;
 				}
 			}

@@ -3,20 +3,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GP_Final_Catapult.Components {
     class Transform : IComponent{
-        public Vector2 Position, Scale;
-        public float Rotation;
+		public Vector2 position;
+		public Vector2 scale;
+        public float rotation;
 
         public Transform() {
-            Position = Vector2.Zero;
-            Scale = Vector2.One;
-            Rotation = 0f;
+			position = Vector2.Zero;
+			scale = Vector2.One;
+            rotation = 0f;
         }
 		public Transform(Vector2 position) {
-			Position = position;
-			Scale = Vector2.One;
-			Rotation = 0f;
+			this.position = position;
+			scale = Vector2.One;
+			rotation = 0f;
 		}
-		public void Update(GameTime gameTime) { }
-        public void Draw(SpriteBatch spriteBatch) { }
     }
 }

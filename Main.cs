@@ -82,7 +82,6 @@ namespace GP_Final_Catapult {
                 else if (args[0].Equals("=") & args[1].Equals("python"))
                     console.Interpreter = pythonInterpreter;
             });
-            manualInterpreter.RegisterCommand("hide", args => { console.ToggleOpenClose(); });
             manualInterpreter.RegisterCommand("exit", args => { Exit(); });
         }
         protected override void Initialize() {
