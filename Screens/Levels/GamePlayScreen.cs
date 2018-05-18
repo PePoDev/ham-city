@@ -11,6 +11,7 @@ using System;
 namespace GP_Final_Catapult.Screens {
 	class GamePlayScreen : IScreen {
 		private Texture2D enemyHumanTexture, enemyMonsterTexture, bulletTexture;
+		private Texture2D catapultFrontTexture, catapultBackTexture;
 		private Texture2D BG_Normal, BG_Dark;
 
 		private List<IGameObject> NormalObj = new List<IGameObject>();
@@ -27,6 +28,8 @@ namespace GP_Final_Catapult.Screens {
 			base.LoadContent();
 			enemyHumanTexture = Content.Load<Texture2D>("Sprites/Character/Theif_Idle");
 			enemyMonsterTexture = Content.Load<Texture2D>("Sprites/Character/Theif_Idle");
+			catapultFrontTexture = Content.Load<Texture2D>("Sprites/CatapultFront");
+			catapultBackTexture = Content.Load<Texture2D>("Sprites/CatapultBack");
 			bulletTexture = Content.Load<Texture2D>("TransitionEffect/Circle");
 			BG_Normal = Content.Load<Texture2D>("Sprites/BG_game_normal");
 			BG_Dark = Content.Load<Texture2D>("Sprites/BG_game_dark");
@@ -57,7 +60,7 @@ namespace GP_Final_Catapult.Screens {
 
 			// Drag and drop  for shoot
 			var bulletPosition = BulletObj.GetComponent<Sprite>().SpriteSheet.CellSize;
-			if (InputManager.OnMouseDown(new Rectangle((int)BulletObj.transform.position.X,(int)BulletObj.transform.position.Y, bulletPosition.X, bulletPosition.Y)) && !isDraging) {
+			if (InputManager.OnMouseDown(new Rectangle((int)BulletObj.transform.position.X - BulletObj.GetComponent<Sprite>().SpriteSheet.CellSize.X / 2, (int)BulletObj.transform.position.Y - BulletObj.GetComponent<Sprite>().SpriteSheet.CellSize.Y / 2, bulletPosition.X, bulletPosition.Y)) && !isDraging) {
 				isDraging = true;
 				oldPosition = BulletObj.transform.position;
 			}
@@ -85,8 +88,9 @@ namespace GP_Final_Catapult.Screens {
 			} else {
 				HumanObj.ForEach(Human => Human.Draw(spriteBatch));
 			}
-
+			spriteBatch.Draw(catapultBackTexture, new Vector2(200, 470), Color.White);
 			BulletObj.Draw(spriteBatch);
+			spriteBatch.Draw(catapultFrontTexture, new Vector2(200, 470), Color.White);
 			NormalObj.ForEach(Normal => Normal.Draw(spriteBatch));
 		}
 	}
