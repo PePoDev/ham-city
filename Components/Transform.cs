@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 
 namespace GP_Final_Catapult.Components {
-    class Transform : IComponent{
+    public class Transform : IComponent{
 		public Vector2 position;
 		public Vector2 scale;
         public float rotation;

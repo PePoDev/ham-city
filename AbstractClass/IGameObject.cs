@@ -6,23 +6,24 @@ using System;
 using System.Collections.Generic;
 
 namespace GP_Final_Catapult.GameObjects {
-	abstract class IGameObject : ICloneable{
-        protected Dictionary<string,IComponent> Components = new Dictionary<string, IComponent>();
+	public class IGameObject {
+		protected Dictionary<string, IComponent> Components = new Dictionary<string, IComponent>();
 
 		public Transform transform = new Transform();
-        public string name;
-        public string tag;
-        public bool active;
-        public byte layer;
+		public bool isActive;
 
-        public void AddComponent(IComponent component) {
-            Components.Add(component.GetType().Name, component);
-        }
-        public T GetComponent<T>() {
+		public Rectangle Rectangle {
+			get {
+				return new Rectangle((int)transform.position.X - GetComponent<Sprite>().Viewport.Width / 2,
+									(int)transform.position.Y - GetComponent<Sprite>().Viewport.Height / 2,
+									GetComponent<Sprite>().Viewport.Width,
+									GetComponent<Sprite>().Viewport.Height);
+			}
+		}
+
+		public void AddComponent(IComponent component) => Components.Add(component.GetType().Name, component);
+		public T GetComponent<T>() {
 			return (T)Convert.ChangeType(Components[typeof(T).Name], typeof(T));
-        }
-		public object Clone() {
-			return (IGameComponent)MemberwiseClone();
 		}
 		public virtual void Update(GameTime gameTime, List<IGameObject> gameObjects) {
 			foreach (var component in Components) {
@@ -30,8 +31,8 @@ namespace GP_Final_Catapult.GameObjects {
 					case "Sprite":
 						(component.Value as Sprite).Update(gameTime);
 						break;
-					case "Rigibody2D":
-						//( component.Value as Rigibody2D ).Update(gameTime,transformposition);
+					case "Physics":
+						(component.Value as Physics).Update(gameTime, ref transform.position, this, gameObjects);
 						break;
 				}
 			}

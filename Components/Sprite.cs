@@ -9,7 +9,13 @@ namespace GP_Final_Catapult.Components {
         public Dictionary<string, Animation> animation = new Dictionary<string, Animation>();
         public string animationName;
 
-		public Sprite(Texture2D Texture, int GridWidth, int GridHeight) => SpriteSheet = new SpriteSheet(Texture).WithGrid((GridWidth, GridHeight));
+		public Rectangle Viewport;
+
+		public Sprite(Texture2D Texture, int GridWidth, int GridHeight) {
+			SpriteSheet = new SpriteSheet(Texture).WithGrid((GridWidth, GridHeight));
+			Viewport.X = GridWidth;
+			Viewport.Y = GridHeight;
+		}
         public void CreateAnimmtion(string _animationName, params (int x, int y)[] frames) => animation.Add(_animationName, SpriteSheet.CreateAnimation(frames));
         public void PlayAnimation(string _animationName) {
             animationName = _animationName;

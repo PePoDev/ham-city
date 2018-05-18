@@ -6,7 +6,7 @@ using GP_Final_Catapult.Components;
 using GP_Final_Catapult.GameObjects;
 using GP_Final_Catapult.Utilities;
 using GP_Final_Catapult.Managers;
-
+using System;
 
 namespace GP_Final_Catapult.Screens {
 	class GamePlayScreen : IScreen {
@@ -17,9 +17,11 @@ namespace GP_Final_Catapult.Screens {
 		private List<IGameObject> HumanObj = new List<IGameObject>();
 		private List<IGameObject> MonsterObj = new List<IGameObject>();
 		private IGameObject BulletObj;
+		private Vector2 oldPosition = Vector2.Zero;
 
 		private bool GodMode = false;
 		private int shootedBullet = 0;
+		private bool isDraging = false;
 
 		public override void LoadContent() {
 			base.LoadContent();
@@ -40,7 +42,7 @@ namespace GP_Final_Catapult.Screens {
 			BulletObj.AddComponent(bulletSprite);
 			BulletObj.transform.position = new Vector2(200, 600);
 
-			HumanObj.Add(ObjectCreate.CreateEnemy(new Vector2(0, 0), enemyHumanTexture));
+			HumanObj.Add(ObjectCreate.CreateEnemyHuman(new Vector2(0, 0), enemyHumanTexture));
 		}
 		public override void UnloadContent() => base.UnloadContent();
 		public override void Update(GameTime gameTime) {
@@ -54,7 +56,24 @@ namespace GP_Final_Catapult.Screens {
 			}
 
 			// Drag and drop  for shoot
-
+			var bulletPosition = BulletObj.GetComponent<Sprite>().SpriteSheet.CellSize;
+			if (InputManager.OnMouseDown(new Rectangle((int)BulletObj.transform.position.X,(int)BulletObj.transform.position.Y, bulletPosition.X, bulletPosition.Y)) && !isDraging) {
+				isDraging = true;
+				oldPosition = BulletObj.transform.position;
+			}
+			if (InputManager.OnMouseUp(new Rectangle(0, 0, 1280, 720)) && isDraging) {
+				isDraging = false;
+				var mousePosition = InputManager.GetMousePosition();
+				if (mousePosition.X < 300 && mousePosition.Y > 500)
+					;
+				else
+					BulletObj.transform.position = oldPosition; ;
+			}
+			if (isDraging) {
+				var mousePosition = InputManager.GetMousePosition();
+				if (mousePosition.X < 300 && mousePosition.Y > 500)
+					BulletObj.transform.position = InputManager.GetMousePosition();
+			}
 			NormalObj.ForEach(Normal => Normal.Update(gameTime, NormalObj));
 		}
 		public override void Draw(SpriteBatch spriteBatch) {

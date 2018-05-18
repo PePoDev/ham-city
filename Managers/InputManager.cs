@@ -23,5 +23,17 @@ namespace GP_Final_Catapult.Managers {
         public static bool OnKeyDown(Keys key) {
             return (keyboardCurrentState.IsKeyDown(key) != keyboardPreviousState.IsKeyDown(key) )&& !keyboardCurrentState.IsKeyUp(key);
         }
-    }
+		public static bool OnMouseDown(Rectangle area) {
+			if (mouseCurrentState.LeftButton == ButtonState.Pressed && mousePreviousState.LeftButton == ButtonState.Released)
+				if (area.Contains(mouseCurrentState.X, mouseCurrentState.Y))
+					return true;
+			return false;
+		}
+		public static bool OnMouseUp(Rectangle area) {
+			if (mouseCurrentState.LeftButton == ButtonState.Released && mousePreviousState.LeftButton == ButtonState.Pressed)
+				if (area.Contains(mouseCurrentState.X,mouseCurrentState.Y))
+					return true;
+			return false;
+		}
+	}
 }

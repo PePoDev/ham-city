@@ -58,14 +58,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AbstractClass\IComponent.cs" />
-    <Compile Include="AbstractClass\IUserinterface.cs" />
-    <Compile Include="Components\BoxColision2D.cs" />
-    <Compile Include="Components\Rigibody2D.cs" />
+    <Compile Include="Components\Physics.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="AbstractClass\IGameObject.cs" />
     <Compile Include="GameObjects\Bullet.cs" />
-    <Compile Include="GameObjects\Catapult.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="Utilities\FadeItem.cs" />
     <Compile Include="Utilities\FramerateCounter.cs" />
@@ -75,7 +72,6 @@
     <Compile Include="Managers\AudioManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\ScreenManager.cs" />
-    <Compile Include="Screens\PlaygroundScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -85,13 +81,8 @@
     </Compile>
     <Compile Include="Screens\Levels\GamePlayScreen.cs" />
     <Compile Include="AbstractClass\IScreen.cs" />
-    <Compile Include="Screens\LevelSelectScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
-    <Compile Include="UI\Button.cs" />
-    <Compile Include="UI\Checkbox.cs" />
-    <Compile Include="UI\Image.cs" />
-    <Compile Include="UI\Label.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="IronPython, Version=2.7.8.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
@@ -142,35 +133,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Audios\2000_Field2.mp3" />
-    <Content Include="Content\Audios\2000_Town3.mp3" />
-    <Content Include="Content\Sprites\BG_game_dark.png" />
-    <Content Include="Content\Sprites\BG_game_normal.png" />
-    <Content Include="Content\Sprites\Character\Boss_Blackpanter_Dead.png" />
-    <Content Include="Content\Sprites\Character\Boss_Blackpanter_Idle.png" />
-    <Content Include="Content\Sprites\Character\Boss_Monk_Dead.png" />
-    <Content Include="Content\Sprites\Character\Boss_Monk_Idle.png" />
-    <Content Include="Content\Sprites\Character\Boss_Soul_Dead.png" />
-    <Content Include="Content\Sprites\Character\Boss_Soul_Idle.png" />
-    <Content Include="Content\Sprites\Character\Boss_Watch_Dead.png" />
-    <Content Include="Content\Sprites\Character\Boss_Watch_Idle.png" />
-    <Content Include="Content\Sprites\Character\Fairy_Idle.png" />
-    <Content Include="Content\Sprites\Character\Monster_Dead.png" />
-    <Content Include="Content\Sprites\Character\Monster_Idle.png" />
-    <Content Include="Content\Sprites\Character\Player_Idle.png" />
-    <Content Include="Content\Sprites\Character\Theif_Dead.png" />
-    <Content Include="Content\Sprites\Character\Theif_Idle.png" />
-    <Content Include="Content\Sprites\cursor.png" />
-    <Content Include="Content\TransitionEffect\Circle.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.config" />
     <None Include="app.manifest" />
-    <None Include="Content\Fonts\Baffled.spritefont" />
-    <None Include="Content\Fonts\Jacklane.spritefont" />
-    <None Include="Content\Fonts\Kaiju.spritefont" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
