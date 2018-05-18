@@ -6,12 +6,9 @@ using System.Collections.Generic;
 namespace GP_Final_Catapult.Utilities{
     static class ScreenTransitions {
         private static Texture2D Circle;
-        private static float scale;
         private static List<FadeItem> items = new List<FadeItem>();
 
-        public static void SetTexture(Texture2D _texture) {
-            Circle = _texture;
-        }
+        public static void SetTexture(Texture2D _texture) => Circle = _texture;
         public static void Initialize() {
             var width = Settings.Default.ScreenWidth;
             var height = Settings.Default.ScreenHeight;
@@ -29,11 +26,10 @@ namespace GP_Final_Catapult.Utilities{
             foreach(var item in items) {
                 item.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
             }
-            //scale = (float)System.Math.Cos(gameTime.TotalGameTime.TotalMilliseconds / 200.0) + 1;
-        }
+            }
         public static void Draw(SpriteBatch spriteBatch) {
             foreach(var item in items) {
-                spriteBatch.Draw(Circle, new Vector2(item.Xpos, item.Ypos), null, Color.White, 0f, new Vector2(32, 32), item.Scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(Circle, new Vector2(item.Xpos, item.Ypos), null, new Color(0xB4EDD2), 0f, new Vector2(32, 32), item.Scale, SpriteEffects.None, 0);
             }
         }
     }

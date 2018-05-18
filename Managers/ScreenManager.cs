@@ -23,7 +23,6 @@ namespace GP_Final_Catapult.Managers {
         public static void Draw(SpriteBatch spriteBatch) {
             currentScreen.Draw(spriteBatch);
         }
-
         public static void LoadScreen(IScreen screenName) {
             currentScreen = screenName;
             currentScreen.LoadContent();

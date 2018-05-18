@@ -14,7 +14,7 @@ namespace GP_Final_Catapult {
         private SpriteBatch spriteBatch;
         private ConsoleComponent console;
 
-        private StringBuilder stringBuilder = new StringBuilder();
+		private StringBuilder stringBuilder = new StringBuilder();
         private SpriteFont Jacklane;
         private Texture2D Cursor;
         private Texture2D Circle;
@@ -90,7 +90,7 @@ namespace GP_Final_Catapult {
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Jacklane = Content.Load<SpriteFont>("Fonts/Jacklane");
-            Cursor = Content.Load<Texture2D>("TransitionEffect/Circle");
+            Cursor = Content.Load<Texture2D>("Sprites/cursor");
             Circle = Content.Load<Texture2D>("TransitionEffect/Circle");
             ScreenTransitions.SetTexture(Circle);
             ScreenManager.LoadContent(this);
@@ -119,14 +119,8 @@ namespace GP_Final_Catapult {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            // CALL ScreenTransition effect
-            ScreenTransitions.Draw(spriteBatch);
-
             // CAll ScreenManager
             ScreenManager.Draw(spriteBatch);
-            
-            // Draw cursor in game
-            spriteBatch.Draw(Cursor,InputManager.GetMousePosition(),Color.White);
             
             // Draw FPS if steting enable
             if (Settings.Default.ShowFPS) {
@@ -136,8 +130,15 @@ namespace GP_Final_Catapult {
                 stringBuilder.Append("FPS : ");
                 stringBuilder.Append(FramerateCounter.AverageFramesPerSecond.ToString("F"));
                 spriteBatch.DrawString(Jacklane, stringBuilder, new Vector2(1020, 10), Color.Yellow);
-            }
-            spriteBatch.End();
+			}
+
+			// CALL ScreenTransition effect
+			ScreenTransitions.Draw(spriteBatch);
+
+			// Draw cursor in game
+			spriteBatch.Draw(Cursor, InputManager.GetMousePosition(), Color.White);
+
+			spriteBatch.End();
             base.Draw(gameTime);
         }
     }
