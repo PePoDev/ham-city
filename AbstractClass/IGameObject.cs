@@ -10,22 +10,28 @@ namespace GP_Final_Catapult.GameObjects {
 		protected Dictionary<string, IComponent> Components = new Dictionary<string, IComponent>();
 
 		public Transform transform = new Transform();
+		public String Name;
 		public bool isActive;
 
-		public Rectangle Rectangle {
+		public IGameObject gameObject {
 			get {
-				return new Rectangle((int)transform.position.X - GetComponent<Sprite>().Viewport.Width / 2,
-									(int)transform.position.Y - GetComponent<Sprite>().Viewport.Height / 2,
-									GetComponent<Sprite>().Viewport.Width,
-									GetComponent<Sprite>().Viewport.Height);
+				return this;
 			}
 		}
-
+		public Rectangle Rectangle {
+			get {
+				return new Rectangle((int)transform.position.X - GetComponent<Sprite>().SpriteSheet.CellSize.X / 2,
+									(int)transform.position.Y - GetComponent<Sprite>().SpriteSheet.CellSize.Y / 2,
+									GetComponent<Sprite>().SpriteSheet.CellSize.X,
+									GetComponent<Sprite>().SpriteSheet.CellSize.Y);
+			}
+		}
 		public void AddComponent(IComponent component) => Components.Add(component.GetType().Name, component);
 		public T GetComponent<T>() {
 			return (T)Convert.ChangeType(Components[typeof(T).Name], typeof(T));
 		}
 		public virtual void Update(GameTime gameTime, List<IGameObject> gameObjects) {
+			
 			foreach (var component in Components) {
 				switch (component.Value.GetType().Name) {
 					case "Sprite":
@@ -41,7 +47,7 @@ namespace GP_Final_Catapult.GameObjects {
 			foreach (var component in Components) {
 				switch (component.Value.GetType().Name) {
 					case "Sprite":
-						(component.Value as Sprite).Draw(spriteBatch, transform.position);
+						(component.Value as Sprite).Draw(spriteBatch, transform);
 						break;
 				}
 			}

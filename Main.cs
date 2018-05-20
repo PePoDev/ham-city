@@ -6,6 +6,7 @@ using GP_Final_Catapult.Managers;
 using GP_Final_Catapult.Utilities;
 using System.Text;
 using QuakeConsole;
+using GP_Final_Catapult.Screens;
 
 namespace GP_Final_Catapult {
 
@@ -19,7 +20,10 @@ namespace GP_Final_Catapult {
         private Texture2D Cursor;
         private Texture2D Circle;
 
-        private float deltaTime;
+		public PythonInterpreter pythonInterpreter;
+		public ManualInterpreter manualInterpreter;
+
+		private float deltaTime;
         public Main() {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -48,8 +52,8 @@ namespace GP_Final_Catapult {
             Components.Add(console);
             
             // Add interpreter for QuakeConsole
-            var pythonInterpreter = new PythonInterpreter();
-            var manualInterpreter = new ManualInterpreter();
+            pythonInterpreter = new PythonInterpreter();
+            manualInterpreter = new ManualInterpreter();
             console.Interpreter = manualInterpreter;
             
             // Add variable for PythonInterpreter
@@ -83,7 +87,8 @@ namespace GP_Final_Catapult {
                     console.Interpreter = pythonInterpreter;
             });
             manualInterpreter.RegisterCommand("exit", args => { Exit(); });
-        }
+			manualInterpreter.RegisterCommand("ResetLevel", args => { ScreenManager.LoadScreen(new GamePlayScreen()); });
+		}
         protected override void Initialize() {
             base.Initialize();
         }

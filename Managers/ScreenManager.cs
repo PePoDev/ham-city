@@ -27,5 +27,8 @@ namespace GP_Final_Catapult.Managers {
             currentScreen = screenName;
             currentScreen.LoadContent();
         }
+		public static void SetNewCommand(string Key,string command) {
+			//main.
+		}
     }
 }

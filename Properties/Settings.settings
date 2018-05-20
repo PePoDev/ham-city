@@ -23,5 +23,11 @@
     <Setting Name="ShowFPS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="LevelStatus" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0/0/0/0/0/0/0/0/0/0</Value>
+    </Setting>
+    <Setting Name="LevelSelected" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

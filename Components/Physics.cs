@@ -42,7 +42,7 @@ namespace GP_Final_Catapult.Components {
 		public Physics() {
 			Mass = float.PositiveInfinity;
 			Restitution = 0f;
-			EntityPhysicsType = PhysicsType.STATICS;
+			EntityPhysicsType = PhysicsType.KINEMATICS;
 			EntityBoundingBoxType = BoundingBoxType.AABB;
 			EntityImpluseType = ImpluseType.NONE;
 			CollideeManifold = new List<CollisionManifold>();
@@ -96,7 +96,6 @@ namespace GP_Final_Catapult.Components {
 						break;
 				}
 			}
-
 			//Resolve collision
 			foreach (CollisionManifold c in CollideeManifold) {
 				switch (EntityImpluseType) {
