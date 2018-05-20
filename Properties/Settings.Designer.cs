@@ -109,7 +109,7 @@ namespace GP_Final_Catapult.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0/0/0/0/0/0/0/0/0/0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0/-1/-1/-1/-1/-1/-1/-1/-1/-1")]
         public string LevelStatus {
             get {
                 return ((string)(this["LevelStatus"]));
@@ -122,9 +122,9 @@ namespace GP_Final_Catapult.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string LevelSelected {
+        public int LevelSelected {
             get {
-                return ((string)(this["LevelSelected"]));
+                return ((int)(this["LevelSelected"]));
             }
             set {
                 this["LevelSelected"] = value;

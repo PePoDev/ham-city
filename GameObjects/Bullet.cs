@@ -11,10 +11,10 @@ namespace GP_Final_Catapult.GameObjects {
 		private IGameObject ObjectHited = null;
 		private Vector2 oldObjectHitPosition = Vector2.Zero;
 		private Vector2 oldPosition = Vector2.Zero;
-		private GamePlayScreen parentScreen = null;
 
 		private float time = 0f;
 		private bool Hited = false;
+		private bool HitedObj = false;
 		private bool isDraging = false;
 		private bool isFly = false;
 		private int shootedBullet = 0;
@@ -49,20 +49,19 @@ namespace GP_Final_Catapult.GameObjects {
 
 			// Detect collition
 			gameObjects.ForEach(GO => {
-				if (!parentScreen.GodMode && GO.Name.Equals("human") && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
+				if (GO.Name.Equals("enemy") && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
 					Hited = true;
-					isFly = false;
-					transform.rotation = 0f;
-					ObjectHited = GO;
-					oldObjectHitPosition = new Vector2(ObjectHited.transform.position.X, ObjectHited.transform.position.Y);
-					GO.GetComponent<Sprite>().PlayAnimation("die");
-				} else if (parentScreen.GodMode && GO.Name.Equals("enemy") && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
-					Hited = true;
-					isFly = false;
-					transform.rotation = 0f;
-					ObjectHited = GO;
-					oldObjectHitPosition = new Vector2(ObjectHited.transform.position.X, ObjectHited.transform.position.Y);
-					GO.GetComponent<Sprite>().PlayAnimation("die");
+					if (--((Enemy)GO).hp == 0) {
+						HitedObj = true;
+						isFly = false;
+						transform.rotation = 0f;
+						ObjectHited = GO;
+						oldObjectHitPosition = new Vector2(ObjectHited.transform.position.X, ObjectHited.transform.position.Y);
+						GO.GetComponent<Sprite>().PlayAnimation("die");
+					} else {
+						GetComponent<Physics>().Velocity = Vector2.Zero;
+						GetComponent<Physics>().Acceleration = Vector2.Zero;
+					}
 				}
 			});
 			if (Hited) {
@@ -73,10 +72,12 @@ namespace GP_Final_Catapult.GameObjects {
 					GetComponent<Physics>().Velocity = Vector2.Zero;
 					GetComponent<Physics>().Acceleration = Vector2.Zero;
 					transform.position = new Vector2(250, 500);
-					gameObjects.Remove(ObjectHited);
-					ObjectHited = null;
 					isFly = false;
 					transform.rotation = 0f;
+					if (HitedObj) {
+						gameObjects.Remove(ObjectHited);
+						ObjectHited = null;
+					}
 				}
 			} else if ((transform.position.X > 1280 + 32 || transform.position.Y > 720 + 32) && !Hited) {
 				GetComponent<Physics>().Velocity = Vector2.Zero;
@@ -96,9 +97,6 @@ namespace GP_Final_Catapult.GameObjects {
 		public override void Draw(SpriteBatch spriteBatch) {
 
 			base.Draw(spriteBatch);
-		}
-		public void GetParentScreen(IScreen parent) {
-			parentScreen = (GamePlayScreen)parent;
 		}
 	}
 }

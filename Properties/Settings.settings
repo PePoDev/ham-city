@@ -24,9 +24,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="LevelStatus" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0/0/0/0/0/0/0/0/0/0</Value>
+      <Value Profile="(Default)">0/-1/-1/-1/-1/-1/-1/-1/-1/-1</Value>
     </Setting>
-    <Setting Name="LevelSelected" Type="System.String" Scope="User">
+    <Setting Name="LevelSelected" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>

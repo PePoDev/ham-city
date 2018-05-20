@@ -11,6 +11,8 @@ using GP_Final_Catapult.Screens;
 namespace GP_Final_Catapult {
 
     public class Main : Game {
+		public static Game self;
+
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private ConsoleComponent console;
@@ -25,6 +27,8 @@ namespace GP_Final_Catapult {
 
 		private float deltaTime;
         public Main() {
+			self = this;
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             
@@ -98,7 +102,7 @@ namespace GP_Final_Catapult {
             Cursor = Content.Load<Texture2D>("Sprites/cursor");
             Circle = Content.Load<Texture2D>("TransitionEffect/Circle");
             ScreenTransitions.SetTexture(Circle);
-            ScreenManager.LoadContent(this);
+            ScreenManager.LoadContent();
         }
         protected override void UnloadContent() {
             ScreenManager.UnloadContent();

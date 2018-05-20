@@ -15,7 +15,8 @@ namespace GP_Final_Catapult.Screens {
 		private Texture2D bulletTexture, wallCanDestroy, wallCanNotDestroy, Door, Trigger;
 		private Texture2D BG_Normal, BG_Dark;
 
-		private List<IGameObject> GameObj = new List<IGameObject>();
+		private List<IGameObject> LightObj = new List<IGameObject>();
+		private List<IGameObject> NightObj = new List<IGameObject>();
 		private IGameObject BulletObj;
 
 		public bool GodMode = false;
@@ -47,30 +48,29 @@ namespace GP_Final_Catapult.Screens {
 			Initial();
 		}
 		public void Initial() {
-			LevelNo = int.Parse(Properties.Settings.Default.LevelSelected);
+			LevelNo = Properties.Settings.Default.LevelSelected;
 			switch (LevelNo) {
 				case 1:
 					// Create bullet
 					BulletObj = ObjectCreate.CreateBullet(new Vector2(250, 500), bulletTexture);
-					((Bullet)BulletObj).GetParentScreen(this);
 
 					// Create Enemy
-					GameObj.Add(ObjectCreate.CreateEnemyHuman(new Vector2(500, 600), enemyHumanTexture));
-					GameObj.Add(ObjectCreate.CreateEnemyMonster(new Vector2(700, 500), enemyMonsterTexture));
-					GameObj.Add(ObjectCreate.CreateBoss1(new Vector2(900, 500), boss1Texture));
-					GameObj.Add(ObjectCreate.CreateBoss2(new Vector2(1100, 500), boss2Texture));
-					GameObj.Add(ObjectCreate.CreateBoss3(new Vector2(500, 200), boss3Texture));
-					
+					LightObj.Add(ObjectCreate.CreateEnemyHuman(new Vector2(500, 600), enemyHumanTexture));
+					NightObj.Add(ObjectCreate.CreateEnemyMonster(new Vector2(700, 500), enemyMonsterTexture));
+					LightObj.Add(ObjectCreate.CreateBoss1(new Vector2(900, 500), boss1Texture));
+					LightObj.Add(ObjectCreate.CreateBoss2(new Vector2(1100, 500), boss2Texture));
+					LightObj.Add(ObjectCreate.CreateBoss3(new Vector2(500, 200), boss3Texture));
+
 					// Create wall
-					GameObj.Add(ObjectCreate.CreateWall(new Vector2(500, 200), wallCanDestroy, 0f,"CanDestroy"));
-					GameObj.Add(ObjectCreate.CreateWall(new Vector2(500, 200), wallCanNotDestroy, 0f, "CanNotDestroy"));
+					NightObj.Add(ObjectCreate.CreateWall(new Vector2(700, 200), wallCanDestroy, "CanDestroy"));
+					NightObj.Add(ObjectCreate.CreateWall(new Vector2(900, 200), wallCanNotDestroy, "CanNotDestroy"));
+
+					// Create door
+					var door = ObjectCreate.CreateWall(new Vector2(1100, 200), Door, "Door");
+					NightObj.Add(door);
 
 					// Create trigger
-					var door = ObjectCreate.CreateWall(new Vector2(500, 200), Door, 0f, "Door");
-					GameObj.Add(door);
-
-					// Create trigger
-					GameObj.Add(ObjectCreate.CreateTrigger(new Vector2(500, 200), Trigger, door));
+					NightObj.Add(ObjectCreate.CreateTrigger(new Vector2(900, 200), Trigger, door));
 					break;
 				case 2:
 
@@ -84,23 +84,22 @@ namespace GP_Final_Catapult.Screens {
 
 				if (InputManager.OnKeyDown(Keys.Space)) GodMode = !GodMode;
 
-				BulletObj.Update(gameTime, GameObj);
-
-				GameObj.ForEach(Obj => {
-					if (!GodMode && Obj.Name.Equals("human")) {
-						Obj.Update(gameTime, GameObj);
-					} else if (GodMode && Obj.Name.Equals("enemy")) {
-						Obj.Update(gameTime, GameObj);
-					}
-				});
+				if (GodMode) {
+					BulletObj.Update(gameTime, NightObj);
+					NightObj.ForEach(obj => obj.Update(gameTime, NightObj));
+				} else {
+					BulletObj.Update(gameTime, LightObj);
+					LightObj.ForEach(obj => obj.Update(gameTime, LightObj));
+				}
 
 				WinDetect();
+
 			} else {
 
 			}
 		}
 		private void WinDetect() {
-			if (!hasEnemy(GameObj)) {
+			if (!hasEnemy(NightObj) && !hasEnemy(LightObj)) {
 				star++;
 				switch (LevelNo) {
 					case 1:
@@ -113,7 +112,7 @@ namespace GP_Final_Catapult.Screens {
 		private bool hasEnemy(List<IGameObject> objects) {
 			var HasEnemy = false;
 			objects.ForEach(GO => {
-				if (GO.Name.Equals("enemy") || GO.Name.Equals("human")) {
+				if (GO.Name.Equals("enemy")) {
 					HasEnemy = true;
 				}
 			});
@@ -123,13 +122,11 @@ namespace GP_Final_Catapult.Screens {
 			// Draw game BG between Dark and Normal mode
 			spriteBatch.Draw(GodMode ? BG_Dark : BG_Normal, Vector2.Zero, Color.White);
 
-			GameObj.ForEach(Obj => {
-				if (!GodMode && Obj.Name.Equals("human")) {
-					Obj.Draw(spriteBatch);
-				} else if (GodMode && Obj.Name.Equals("enemy")) {
-					Obj.Draw(spriteBatch);
-				}
-			});
+			if (GodMode) {
+				NightObj.ForEach(obj => obj.Draw(spriteBatch));
+			} else {
+				LightObj.ForEach(obj => obj.Draw(spriteBatch));
+			}
 
 			spriteBatch.Draw(catapultBackTexture, new Vector2(200, 470), Color.White);
 			BulletObj.Draw(spriteBatch);

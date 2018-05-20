@@ -5,13 +5,11 @@ using GP_Final_Catapult.Screens;
 
 namespace GP_Final_Catapult.Managers {
     static class ScreenManager {
-        public static Main main;
         public static ContentManager Content { private set; get; }
-        public static IScreen currentScreen = new SplashScreen();
+        public static IScreen currentScreen = new GamePlayScreen();
 
-        public static void LoadContent(Main _main) {
-            main = _main;
-            Content = new ContentManager(main.Content.ServiceProvider, "Content");
+        public static void LoadContent() {
+            Content = new ContentManager(Main.self.Content.ServiceProvider, "Content");
             currentScreen.LoadContent();
         }
         public static void UnloadContent() {
@@ -27,8 +25,5 @@ namespace GP_Final_Catapult.Managers {
             currentScreen = screenName;
             currentScreen.LoadContent();
         }
-		public static void SetNewCommand(string Key,string command) {
-			//main.
-		}
-    }
+	}
 }

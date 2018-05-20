@@ -25,10 +25,8 @@ namespace GP_Final_Catapult.Screens {
 			} else if (time > 6f) {
 				ScreenManager.LoadScreen(new MainMenuScreen());
 			}
-			Console.WriteLine(time);
 		}
 		public override void Draw(SpriteBatch spriteBatch) {
-			spriteBatch.GraphicsDevice.Clear(Color.Black);
 			spriteBatch.Draw(โลโก้, new Vector2((Settings.Default.ScreenWidth / 2) - โลโก้.Width / 2, (Settings.Default.ScreenHeight / 2) - โลโก้.Height / 2),Color.White);
 		}
 	}

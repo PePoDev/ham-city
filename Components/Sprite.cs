@@ -17,11 +17,7 @@ namespace GP_Final_Catapult.Components {
 		public void CreateAnimmtion(string _animationName, params (int x, int y)[] frames) => animation.Add(_animationName, SpriteSheet.CreateAnimation(frames));
 		public void PlayAnimation(string _animationName) {
 			animationName = _animationName;
-			animation[animationName].Start(Repeat.Mode.LoopWithReverse);
-		}
-		public void PlayAnimation(string _animationName, Repeat.Mode mode) {
-			animationName = _animationName;
-			animation[animationName].Start(mode);
+			animation[animationName].Start(Repeat.Mode.Loop);
 		}
 		public void Update(GameTime gameTime) => animation[animationName].Update(gameTime);
 		public void Draw(SpriteBatch spriteBatch, Transform transform) => spriteBatch.Draw(animation[animationName], transform.position, color, MathHelper.ToDegrees(transform.rotation), Vector2.One);
