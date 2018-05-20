@@ -1,4 +1,5 @@
 ﻿
+using GP_Final_Catapult.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,7 +9,11 @@ namespace GP_Final_Catapult.Screens {
         public override void LoadContent() {
             base.LoadContent();
 
+			Initial();
         }
+		private void Initial() {
+			ScreenTransitions.FadeOUT();
+		}
         public override void UnloadContent() {
             base.UnloadContent();
         }

@@ -7,7 +7,7 @@ namespace GP_Final_Catapult.Managers {
     static class ScreenManager {
         public static Main main;
         public static ContentManager Content { private set; get; }
-        public static IScreen currentScreen = new GamePlayScreen();
+        public static IScreen currentScreen = new SplashScreen();
 
         public static void LoadContent(Main _main) {
             main = _main;

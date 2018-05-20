@@ -45,10 +45,10 @@ namespace GP_Final_Catapult {
             graphics.ApplyChanges();
 
             // Initial ScreenTransition
-            ScreenTransitions.Initialize();
+			ScreenTransitions.FadeOUT();
 
-            // Initial QuakeConsole
-            console = new ConsoleComponent(this);
+			// Initial QuakeConsole
+			console = new ConsoleComponent(this);
             Components.Add(console);
             
             // Add interpreter for QuakeConsole
