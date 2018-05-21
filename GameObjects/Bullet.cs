@@ -42,7 +42,7 @@ namespace GP_Final_Catapult.GameObjects {
 				transform.position = InputManager.GetMousePosition();
 			}
 			if (isFly) {
-				transform.rotation += 0.0001f;
+				transform.rotation += 0.0005f;
 				if (transform.rotation > 360f) {
 					transform.rotation = -360f;
 				}

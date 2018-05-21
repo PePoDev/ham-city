@@ -154,7 +154,7 @@ namespace GP_Final_Catapult.Utilities {
 			var wallPhysics = new Physics();
 			wallPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
 			wallPhysics.EntityImpluseType = Physics.ImpluseType.NORMAL;
-			wallPhysics.EntityPhysicsType = Physics.PhysicsType.KINEMATICS;
+			wallPhysics.EntityPhysicsType = Physics.PhysicsType.STATICS;
 
 			var wall = new Wall();
 			wall.AddComponent(wallSprite);
@@ -172,7 +172,7 @@ namespace GP_Final_Catapult.Utilities {
 			var wallPhysics = new Physics();
 			wallPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
 			wallPhysics.EntityImpluseType = Physics.ImpluseType.NORMAL;
-			wallPhysics.EntityPhysicsType = Physics.PhysicsType.KINEMATICS;
+			wallPhysics.EntityPhysicsType = Physics.PhysicsType.STATICS;
 
 			var wall = new Wall();
 			wall.AddComponent(wallSprite);
