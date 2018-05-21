@@ -6,7 +6,7 @@ using GP_Final_Catapult.Screens;
 namespace GP_Final_Catapult.Managers {
     static class ScreenManager {
         public static ContentManager Content { private set; get; }
-        public static IScreen currentScreen = new GamePlayScreen();
+        public static IScreen currentScreen = new SplashScreen();
 
         public static void LoadContent() {
             Content = new ContentManager(Main.self.Content.ServiceProvider, "Content");

@@ -11,7 +11,6 @@ namespace GP_Final_Catapult.GameObjects {
 
 		public Transform transform = new Transform();
 		public String Name;
-		public string Tag;
 		public bool isActive;
 
 		public IGameObject gameObject {

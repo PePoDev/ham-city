@@ -14,7 +14,7 @@ namespace GP_Final_Catapult.GameObjects {
 
 		private float time = 0f;
 		private bool Hited = false;
-		private bool HitedObj = false;
+		public bool HitedObj = false;
 		private bool isDraging = false;
 		private bool isFly = false;
 		private int shootedBullet = 0;
@@ -35,6 +35,7 @@ namespace GP_Final_Catapult.GameObjects {
 				GetComponent<Physics>().Acceleration.Y = 981;
 				GetComponent<Physics>().GRAVITY = 200;
 				shootedBullet++;
+				AudioManager.PlayAudio("shoot");
 			}
 			if (isDraging) {
 				var mousePosition = InputManager.GetMousePosition();
@@ -58,12 +59,22 @@ namespace GP_Final_Catapult.GameObjects {
 						ObjectHited = GO;
 						oldObjectHitPosition = new Vector2(ObjectHited.transform.position.X, ObjectHited.transform.position.Y);
 						GO.GetComponent<Sprite>().PlayAnimation("die");
+						AudioManager.PlayAudio("die");
 					} else {
 						GetComponent<Physics>().Velocity = Vector2.Zero;
 						GetComponent<Physics>().Acceleration = Vector2.Zero;
 					}
+				} else if (GO.Name.Equals("CanDestroy") && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
+					gameObjects.Remove(GO);
+					GetComponent<Physics>().Velocity = Vector2.Zero;
+					GetComponent<Physics>().Acceleration = Vector2.Zero;
+					transform.position = new Vector2(250, 500);
+					isFly = false;
+					transform.rotation = 0f;
 				}
 			});
+
+			// Delay for play die animation when bullet hit enemy
 			if (Hited) {
 				time += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
 				if (time > 0.8f) {
@@ -77,6 +88,7 @@ namespace GP_Final_Catapult.GameObjects {
 					if (HitedObj) {
 						gameObjects.Remove(ObjectHited);
 						ObjectHited = null;
+						HitedObj = false;
 					}
 				}
 			} else if ((transform.position.X > 1280 + 32 || transform.position.Y > 720 + 32) && !Hited) {

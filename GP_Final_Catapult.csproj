@@ -62,7 +62,6 @@
     <Compile Include="AbstractClass\IGameObject.cs" />
     <Compile Include="GameObjects\Bullet.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
-    <Compile Include="GameObjects\Ground.cs" />
     <Compile Include="GameObjects\Trigger.cs" />
     <Compile Include="GameObjects\Wall.cs" />
     <Compile Include="Utilities\FadeItem.cs" />

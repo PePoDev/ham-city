@@ -7,6 +7,8 @@ using GP_Final_Catapult.Utilities;
 using System.Text;
 using QuakeConsole;
 using GP_Final_Catapult.Screens;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GP_Final_Catapult {
 
@@ -21,6 +23,7 @@ namespace GP_Final_Catapult {
         private SpriteFont Jacklane;
         private Texture2D Cursor;
         private Texture2D Circle;
+		private Song BGM;
 
 		public PythonInterpreter pythonInterpreter;
 		public ManualInterpreter manualInterpreter;
@@ -92,6 +95,16 @@ namespace GP_Final_Catapult {
             });
             manualInterpreter.RegisterCommand("exit", args => { Exit(); });
 			manualInterpreter.RegisterCommand("ResetLevel", args => { ScreenManager.LoadScreen(new GamePlayScreen()); });
+
+			BGM = Content.Load<Song>("Audios/POL-mad-run-short");
+			MediaPlayer.IsRepeating = true;
+			MediaPlayer.Volume = Settings.Default.BGMVolume;
+			MediaPlayer.Play(BGM);
+
+			AudioManager.AddAudioEffect("click", Content.Load<SoundEffect>("Audios/NFF-select").CreateInstance());
+			AudioManager.AddAudioEffect("shoot", Content.Load<SoundEffect>("Audios/NFF-rasp").CreateInstance());
+			AudioManager.AddAudioEffect("die", Content.Load<SoundEffect>("Audios/NFF-lose").CreateInstance());
+			AudioManager.AddAudioEffect("switch", Content.Load<SoundEffect>("Audios/NFF-click-switch").CreateInstance());
 		}
         protected override void Initialize() {
             base.Initialize();
@@ -109,8 +122,10 @@ namespace GP_Final_Catapult {
             Content.Unload();
         }
         protected override void Update(GameTime gameTime) {
-            // CALL InputManager
-            InputManager.Update(gameTime);
+			MediaPlayer.Volume = Settings.Default.BGMVolume;
+
+			// CALL InputManager
+			InputManager.Update(gameTime);
 
             // CALL ScreenManager
             ScreenManager.Update(gameTime);

@@ -7,13 +7,15 @@ using GP_Final_Catapult.GameObjects;
 using GP_Final_Catapult.Utilities;
 using GP_Final_Catapult.Managers;
 using System;
+using GP_Final_Catapult.Properties;
 
 namespace GP_Final_Catapult.Screens {
 	class GamePlayScreen : IScreen {
 		private Texture2D enemyHumanTexture, enemyMonsterTexture, boss1Texture, boss2Texture, boss3Texture, bossSoulTexture, fairyTexture, PlayerTexture;
-		private Texture2D catapultFrontTexture, catapultBackTexture;
+		private Texture2D catapultFrontTexture, catapultBackTexture, Star1, Star2, Star3;
 		private Texture2D bulletTexture, wallCanDestroy, wallCanNotDestroy, Door, Trigger;
 		private Texture2D BG_Normal, BG_Dark;
+		private SpriteFont font;
 
 		private List<IGameObject> LightObj = new List<IGameObject>();
 		private List<IGameObject> NightObj = new List<IGameObject>();
@@ -38,17 +40,28 @@ namespace GP_Final_Catapult.Screens {
 			catapultFrontTexture = Content.Load<Texture2D>("Sprites/CatapultFront");
 			catapultBackTexture = Content.Load<Texture2D>("Sprites/CatapultBack");
 			bulletTexture = Content.Load<Texture2D>("Sprites/Bullet");
+
+			wallCanDestroy = Content.Load<Texture2D>("Sprites/WallCanDestroy");
+			wallCanNotDestroy = Content.Load<Texture2D>("Sprites/WallCantDestroy");
+			Door = Content.Load<Texture2D>("Sprites/WallTrigger");
 			wallCanDestroy = Content.Load<Texture2D>("Sprites/WallCanDestroy");
 			wallCanNotDestroy = Content.Load<Texture2D>("Sprites/WallCantDestroy");
 			Door = Content.Load<Texture2D>("Sprites/WallTrigger");
 			Trigger = Content.Load<Texture2D>("Sprites/Bullet");
+
 			BG_Normal = Content.Load<Texture2D>("Sprites/BG_game_normal");
 			BG_Dark = Content.Load<Texture2D>("Sprites/BG_game_dark");
+			font = Content.Load<SpriteFont>("fonts/Kaiju");
+
+			Star1 = Content.Load<Texture2D>("Sprites/1start");
+			Star2 = Content.Load<Texture2D>("Sprites/2start");
+			Star3 = Content.Load<Texture2D>("Sprites/3start");
 
 			Initial();
 		}
 		public void Initial() {
-			LevelNo = Properties.Settings.Default.LevelSelected;
+			ScreenTransitions.FadeOUT();
+			LevelNo = Settings.Default.LevelSelected;
 			switch (LevelNo) {
 				case 1:
 					// Create bullet
@@ -82,7 +95,7 @@ namespace GP_Final_Catapult.Screens {
 			if (!isWin) {
 				time += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
 
-				if (InputManager.OnKeyDown(Keys.Space)) GodMode = !GodMode;
+				if (InputManager.OnKeyDown(Keys.Space) && !((Bullet)BulletObj).HitedObj) GodMode = !GodMode;
 
 				if (GodMode) {
 					BulletObj.Update(gameTime, NightObj);
@@ -127,6 +140,8 @@ namespace GP_Final_Catapult.Screens {
 			} else {
 				LightObj.ForEach(obj => obj.Draw(spriteBatch));
 			}
+
+			spriteBatch.DrawString(font,"Time : " + time.ToString(),new Vector2(25,25),Color.Black);
 
 			spriteBatch.Draw(catapultBackTexture, new Vector2(200, 470), Color.White);
 			BulletObj.Draw(spriteBatch);

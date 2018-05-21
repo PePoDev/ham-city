@@ -148,12 +148,11 @@ namespace GP_Final_Catapult.Utilities {
 			var wallSprite = new Sprite(bulletTexture,195, 23);
 			wallSprite.CreateAnimmtion("idle", (0, 0));
 			wallSprite.PlayAnimation("idle");
-
+			
 			var wallPhysics = new Physics();
-			var groundPhysics = new Physics();
-			groundPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
-			groundPhysics.EntityImpluseType = Physics.ImpluseType.NORMAL;
-			groundPhysics.EntityPhysicsType = Physics.PhysicsType.KINEMATICS;
+			wallPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
+			wallPhysics.EntityImpluseType = Physics.ImpluseType.NORMAL;
+			wallPhysics.EntityPhysicsType = Physics.PhysicsType.KINEMATICS;
 
 			var wall = new Wall();
 			wall.AddComponent(wallSprite);
