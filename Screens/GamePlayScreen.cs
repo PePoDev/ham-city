@@ -14,6 +14,7 @@ namespace GP_Final_Catapult.Screens {
 		private Texture2D enemyHumanTexture, enemyMonsterTexture, boss1Texture, boss2Texture, boss3Texture, bossSoulTexture, fairyTexture, PlayerTexture;
 		private Texture2D catapultFrontTexture, catapultBackTexture, Star1, Star2, Star3;
 		private Texture2D bulletTexture, wallCanDestroy, wallCanNotDestroy, Door, wallCanDestroyStand, wallCanNotDestroyStand, DoorStand, Trigger;
+		private Texture2D Home, Restart, Next;
 		private Texture2D BG_Normal, BG_Dark, BlackPanel;
 		private SpriteFont font;
 
@@ -60,6 +61,10 @@ namespace GP_Final_Catapult.Screens {
 			Star3 = Content.Load<Texture2D>("Sprites/3start");
 			BlackPanel = Content.Load<Texture2D>("Sprites/fadeBlack");
 
+			Home = Content.Load<Texture2D>("Sprites/home");
+			Restart = Content.Load<Texture2D>("Sprites/lv8-1");
+			Next = Content.Load<Texture2D>("Sprites/next");
+
 			Initial();
 		}
 		public void Initial() {
@@ -86,14 +91,15 @@ namespace GP_Final_Catapult.Screens {
 					NightObj.Add(ObjectCreate.CreateWallStand(new Vector2(900, 200), wallCanNotDestroyStand, "CanNotDestroy"));
 
 					// Create door
-					var door = ObjectCreate.CreateWall(new Vector2(1100, 200), Door, "Door");
+					var door = ObjectCreate.CreateWall(new Vector2(1100, 500), Door, "Door");
 					NightObj.Add(door);
 
 					var doorList = new List<IGameObject>();
 					doorList.Add(door);
 
 					// Create trigger
-					NightObj.Add(ObjectCreate.CreateTrigger(new Vector2(900, 200), Trigger, doorList));
+					NightObj.Add(ObjectCreate.CreateTrigger(new Vector2(900, 500), Trigger, doorList));
+
 					break;
 				case 1:
 
@@ -140,7 +146,7 @@ namespace GP_Final_Catapult.Screens {
 			if (!isWin) {
 				time += (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
 
-				if (InputManager.OnKeyDown(Keys.Space) && !((Bullet)BulletObj).HitedObj) GodMode = !GodMode;
+				if (InputManager.OnKeyDown(Keys.Space) && !((Bullet)BulletObj).HitedObj && !((Bullet)BulletObj).isFly) GodMode = !GodMode;
 
 				if (GodMode) {
 					BulletObj.Update(gameTime, NightObj);
@@ -153,13 +159,40 @@ namespace GP_Final_Catapult.Screens {
 				WinDetect();
 
 			} else {
-
+				// Restart
+				if (InputManager.OnMouseDown(new Rectangle(100, 500, 300, 110))) {
+					var levelStatus = Settings.Default.LevelStatus.Split('/');
+					levelStatus[LevelNo - 1] = "3";
+					levelStatus[LevelNo] = "0";
+					Settings.Default.LevelStatus = String.Join("/",levelStatus);
+					Settings.Default.Save();
+					ScreenManager.LoadScreen(new GamePlayScreen());
+				}
+				// Home
+				if (InputManager.OnMouseDown(new Rectangle(450, 500, 300, 110))) {
+					var levelStatus = Settings.Default.LevelStatus.Split('/');
+					levelStatus[LevelNo - 1] = "3";
+					levelStatus[LevelNo] = "0";
+					Settings.Default.LevelStatus = String.Join("/", levelStatus);
+					Settings.Default.Save();
+					ScreenManager.LoadScreen(new MainMenuScreen());
+				}
+				// Next Level
+				if (InputManager.OnMouseDown(new Rectangle(800, 500, 300, 110))) {
+					var levelStatus = Settings.Default.LevelStatus.Split('/');
+					levelStatus[LevelNo - 1] = "3";
+					levelStatus[LevelNo] = "0";
+					Settings.Default.LevelStatus = String.Join("/", levelStatus);
+					Settings.Default.LevelSelected = LevelNo + 1;
+					Settings.Default.Save();
+					ScreenManager.LoadScreen(new GamePlayScreen());
+				}
 			}
 		}
 		private void WinDetect() {
 			if (!hasEnemy(NightObj) && !hasEnemy(LightObj)) {
 				star++;
-				// AudioManager.
+				// AudioManager.Play("win");
 				switch (LevelNo) {
 					case 1:
 						star += 2;
@@ -200,12 +233,15 @@ namespace GP_Final_Catapult.Screens {
 			if (isWin) {
 				spriteBatch.Draw(BlackPanel, Vector2.Zero, new Color(Color.Black, 0.8f));
 				if (star == 1) {
-					spriteBatch.Draw(Star1, new Vector2(640-Star1.Width/2,360-Star1.Height), Color.White);
+					spriteBatch.Draw(Star1, new Vector2(640 - Star1.Width / 2, 360 - Star1.Height), Color.White);
 				} else if (star == 2) {
 					spriteBatch.Draw(Star2, new Vector2(640 - Star1.Width / 2, 360 - Star1.Height), Color.White);
 				} else if (star == 3) {
 					spriteBatch.Draw(Star3, new Vector2(640 - Star1.Width / 2, 360 - Star1.Height), Color.White);
 				}
+				spriteBatch.Draw(Restart, new Vector2(100, 500), Color.White);
+				spriteBatch.Draw(Home, new Vector2(450, 500), Color.White);
+				spriteBatch.Draw(Next, new Vector2(800, 500), Color.White);
 			}
 		}
 	}

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace GP_Final_Catapult.GameObjects {
 	class Bullet : IGameObject {
-		private IGameObject ObjectHited = null, WallObj = null;
+		private IGameObject ObjectHited = null, WallObj = null, triggerObj = null;
 		private Vector2 oldObjectHitPosition = Vector2.Zero;
 		private Vector2 oldPosition = Vector2.Zero;
 
@@ -16,7 +16,7 @@ namespace GP_Final_Catapult.GameObjects {
 		private bool Hited = false;
 		public bool HitedObj = false;
 		private bool isDraging = false;
-		private bool isFly = false;
+		public bool isFly = false;
 		private int shootedBullet = 0;
 
 		public override void Update(GameTime gameTime, List<IGameObject> gameObjects) {
@@ -71,12 +71,30 @@ namespace GP_Final_Catapult.GameObjects {
 					transform.position = new Vector2(250, 500);
 					isFly = false;
 					transform.rotation = 0f;
+				} else if ((GO.Name.Equals("CanNotDestroy") || GO.Name.Equals("Door")) && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
+					GetComponent<Physics>().Velocity = Vector2.Zero;
+					GetComponent<Physics>().Acceleration = Vector2.Zero;
+					transform.position = new Vector2(250, 500);
+					isFly = false;
+					transform.rotation = 0f;
+				} else if (GO.Name.Equals("trigger") && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
+					GetComponent<Physics>().Velocity = Vector2.Zero;
+					GetComponent<Physics>().Acceleration = Vector2.Zero;
+					transform.position = new Vector2(250, 500);
+					isFly = false;
+					transform.rotation = 0f;
+					GO.GetComponent<Sprite>().PlayAnimation("switch");
+					triggerObj = GO;
 				}
 			});
 
 			if (WallObj != null) {
 				gameObjects.Remove(WallObj);
 				WallObj = null;
+			}
+
+			if (triggerObj != null) {
+				((Trigger)triggerObj).doorList.ForEach( obj => gameObjects.Remove(obj));
 			}
 
 			// Delay for play die animation when bullet hit enemy

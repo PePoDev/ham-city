@@ -123,6 +123,7 @@ namespace GP_Final_Catapult.Utilities {
 			trigger.AddComponent(triggerPhysics);
 			trigger.transform.position = position;
 			trigger.Name = "trigger";
+			trigger.doorList = door;
 
 			return trigger;
 		}
