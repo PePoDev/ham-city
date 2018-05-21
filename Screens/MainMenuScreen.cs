@@ -99,63 +99,63 @@ namespace GP_Final_Catapult.Screens {
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(200, 300, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(200, 300, 101, 84)) && !LevelStatus[1].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 2;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(300, 300, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(300, 300, 101, 84)) && !LevelStatus[2].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 3;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(400, 300, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(400, 300, 101, 84)) && !LevelStatus[3].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 4;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(500, 300, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(500, 300, 101, 84)) && !LevelStatus[4].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 5;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(100, 425, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(100, 425, 101, 84)) && !LevelStatus[5].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 6;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(200, 425, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(200, 425, 101, 84)) && !LevelStatus[6].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 7;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(300, 425, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(300, 425, 101, 84)) && !LevelStatus[7].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 8;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(400, 425, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(400, 425, 101, 84)) && !LevelStatus[8].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 9;
 					Settings.Default.Save();
 					Fade = true;
 					ScreenTransitions.FadeIN();
 				}
-				if (InputManager.OnMouseDown(new Rectangle(500, 425, 101, 84)) && !LevelStatus[0].Equals("-1")) {
+				if (InputManager.OnMouseDown(new Rectangle(500, 425, 101, 84)) && !LevelStatus[9].Equals("-1")) {
 					AudioManager.PlayAudio("click");
 					Settings.Default.LevelSelected = 10;
 					Settings.Default.Save();

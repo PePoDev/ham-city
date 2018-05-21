@@ -87,7 +87,15 @@ namespace GP_Final_Catapult {
                     Settings.Default.Save();
                 }
             });
-            manualInterpreter.RegisterCommand("console.Interpreter", args => {
+			manualInterpreter.RegisterCommand("Level", args => {
+				if (args.Length < 2)
+					return;
+				else if (args[0].Equals("=")) {
+					Settings.Default.LevelSelected = int.Parse(args[1]);
+					Settings.Default.Save();
+				}
+			});
+			manualInterpreter.RegisterCommand("console.Interpreter", args => {
                 if (args.Length < 2)
                     return;
                 else if (args[0].Equals("=") & args[1].Equals("python"))

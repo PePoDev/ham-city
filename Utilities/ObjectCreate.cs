@@ -2,6 +2,7 @@
 using GP_Final_Catapult.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace GP_Final_Catapult.Utilities {
 	static class ObjectCreate {
@@ -106,11 +107,11 @@ namespace GP_Final_Catapult.Utilities {
 
 			return enemy;
 		}
-		public static Trigger CreateTrigger(Vector2 position, Texture2D enemyTexture, IGameObject door) {
-			var triggerSprite = new Sprite(enemyTexture, 200, 200);
-			triggerSprite.CreateAnimmtion("idle", (2, 1), (2, 1), (2, 1), (0, 2), (0, 2), (0, 2), (1, 2), (1, 2), (1, 2));
+		public static Trigger CreateTrigger(Vector2 position, Texture2D enemyTexture, List<IGameObject> door) {
+			var triggerSprite = new Sprite(enemyTexture, 58, 80);
+			triggerSprite.CreateAnimmtion("idle", (0,0));
 			triggerSprite.PlayAnimation("idle");
-			triggerSprite.CreateAnimmtion("die", (0, 0), (1, 0), (2, 0), (0, 1), (0, 2));
+			triggerSprite.CreateAnimmtion("switch", (1, 0));
 
 			var triggerPhysics = new Physics();
 			triggerPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
@@ -149,6 +150,24 @@ namespace GP_Final_Catapult.Utilities {
 			wallSprite.CreateAnimmtion("idle", (0, 0));
 			wallSprite.PlayAnimation("idle");
 			
+			var wallPhysics = new Physics();
+			wallPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
+			wallPhysics.EntityImpluseType = Physics.ImpluseType.NORMAL;
+			wallPhysics.EntityPhysicsType = Physics.PhysicsType.KINEMATICS;
+
+			var wall = new Wall();
+			wall.AddComponent(wallSprite);
+			wall.AddComponent(wallPhysics);
+			wall.transform.position = position;
+			wall.Name = WallType;
+
+			return wall;
+		}
+		public static Wall CreateWallStand(Vector2 position, Texture2D bulletTexture, string WallType) {
+			var wallSprite = new Sprite(bulletTexture, 23, 195);
+			wallSprite.CreateAnimmtion("idle", (0, 0));
+			wallSprite.PlayAnimation("idle");
+
 			var wallPhysics = new Physics();
 			wallPhysics.EntityBoundingBoxType = Physics.BoundingBoxType.AABB;
 			wallPhysics.EntityImpluseType = Physics.ImpluseType.NORMAL;

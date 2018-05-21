@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace GP_Final_Catapult.GameObjects {
 	class Bullet : IGameObject {
-		private IGameObject ObjectHited = null;
+		private IGameObject ObjectHited = null, WallObj = null;
 		private Vector2 oldObjectHitPosition = Vector2.Zero;
 		private Vector2 oldPosition = Vector2.Zero;
 
@@ -65,7 +65,7 @@ namespace GP_Final_Catapult.GameObjects {
 						GetComponent<Physics>().Acceleration = Vector2.Zero;
 					}
 				} else if (GO.Name.Equals("CanDestroy") && gameObject.GetComponent<Physics>().IsTouching(GO) && !Hited) {
-					gameObjects.Remove(GO);
+					WallObj = GO;
 					GetComponent<Physics>().Velocity = Vector2.Zero;
 					GetComponent<Physics>().Acceleration = Vector2.Zero;
 					transform.position = new Vector2(250, 500);
@@ -73,6 +73,11 @@ namespace GP_Final_Catapult.GameObjects {
 					transform.rotation = 0f;
 				}
 			});
+
+			if (WallObj != null) {
+				gameObjects.Remove(WallObj);
+				WallObj = null;
+			}
 
 			// Delay for play die animation when bullet hit enemy
 			if (Hited) {
