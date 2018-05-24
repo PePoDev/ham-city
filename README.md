@@ -10,14 +10,22 @@ Catapult game with basic logic by monogame.
 
 ## Screen Shot
 
-![Menu Screen](Screenshot/01.png)
+![Splash Screen](Screenshots/01.png)
 
-![GamePlay Screen](Screenshot/02.png)
+![Menu Screen](Screenshots/02.png)
+
+![Menu-SelectLevel Screen](Screenshots/03.png)
+
+![GamePlay-Day Screen](Screenshots/04.png)
+
+![GamePlay-Night Screen](Screenshots/05.png)
+
+![Win Screen](Screenshots/06.png)
 
 ## Release History
-* 0.0.0.a
-    * development version.
-    * nothing . . .
+* 0.0.1 (Present version)
+    * more bug but can play with basic game level.
+
 ## Meta
 
 My name is [@PePoDev](https://fb.com/pepo.dev) – support@pepodev.com
