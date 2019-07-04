@@ -26,10 +26,6 @@ Catapult game with basic logic by monogame.
 * 0.0.1 (Present version)
     * more bug but can play with basic game level.
 
-## Meta
-
-My name is [@PePoDev](https://fb.com/pepo.dev) – support@pepodev.com
-
 ## Contributing
 
 1. Fork it (<https://github.com/PePoDev/HamCity/fork>)
